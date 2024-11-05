@@ -1,42 +1,41 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile/Profile';
+import PracticePage from './components/MyPage/PracticePage';
+import Dialogs from './components/Dialogs/Dialogs';
+import News from './components/News/News';
 
+// import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { addPost } from './redux/state';
 
-const App = () => {
+const App = (props) => {
+  console.log(props)
+
   return (
-    <div className='app-wraper'>
-      <header className='header'>
-        <img src='https://img.freepik.com/premium-photo/white-blue-gradient-abstract-background-rendering-for-display-or-montage-your-products_626958-417.jpg?size=626&ext=jpg'></img>
-      </header>
-      <nav className='nav'>
-        <div>
-          <a>Profile</a>
+    <BrowserRouter>
+      <div className='app-wrapper'>
+        <Header />
+        <Navbar />
+        <div className='app-wrapper-content'>
+          <Routes>
+            <Route exact path="/dialogs" element={<Dialogs state={props.state.dialogsPage} />} />
+            <Route path="/profile" element={<Profile profilePage={props.state.profilePage}
+              addPost={props.addPost}
+              updateNewPostText={props.updateNewPostText} />} />
+
+            <Route path="/news" element={<News />} />
+            <Route path="/practicepage" element={<PracticePage practicePageData={props.state.practicePageData}
+            addPracticePost={props.addPracticePost}/>} />
+
+          </Routes>
         </div>
-        <div>
-          <a>Messages</a>
-        </div>
-        <div>
-          <a>News</a>
-        </div>
-        <div>
-          <a>Music</a>
-        </div>
-        <div>
-          <a>Settings</a>
-        </div>
-      </nav>
-      <div className='content'>
-        Main content
-        <img src='https://img.freepik.com/free-photo/view-of-3d-adorable-cat-with-fluffy-clouds_23-2151113419.jpg'></img>
       </div>
-      {/* <Header />
-      <Footer /> */}
-    </div>
+    </BrowserRouter>
   );
 }
-
-
 
 export default App;
 

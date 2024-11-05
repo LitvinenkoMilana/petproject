@@ -1,15 +1,11 @@
+import React from 'react';
 import classes from './Header.module.css';
 
 const Header = () => {
-    return (
-        <div className="App">
-            <ul>
-                <li>pig</li>
-                <li>footer</li>
-                <li>react</li>
-            </ul>
-        </div>
-    );
+    return <header className={classes.header}>
+        <img src='https://img.freepik.com/premium-photo/white-blue-gradient-abstract-background-rendering-for-display-or-montage-your-products_626958-417.jpg?size=626&ext=jpg'></img>
+    </header>
+
 }
 
 export default Header;
